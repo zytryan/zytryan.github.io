@@ -173,10 +173,7 @@ min    -80995.000000  -11062.060000   12346.000000
 25%         1.000000       1.250000   13953.000000
 50%         3.000000       2.080000   15152.000000
 75%        10.000000       4.130000   16791.000000
-max     80995.000000   38970.000000   18287.000000</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. data preprocessing: missing value: 1. data imputation</span></span><br><span class="line"><span class="comment">#data imputation method: 1. impute 0 2. imputate average/median 3. (Guassian regression)</span></span><br><span class="line"><span class="comment"># 2. outlier: remove outliers</span></span><br><span class="line"><span class="comment">#2. model building: </span></span><br><span class="line"><span class="comment"># 3. training data and test data: model is more general</span></span><br><span class="line"><span class="comment"># 4. cross-validation (k-fold): model is more general </span></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.asarray(raw_data[<span class="string">'InvoiceNo'</span>])</span><br><span class="line"><span class="keyword">print</span> raw_data[<span class="string">'Country'</span>]</span><br></pre></td></tr></table></figure>
+max     80995.000000   38970.000000   18287.000000</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.asarray(raw_data[<span class="string">'InvoiceNo'</span>])</span><br><span class="line"><span class="keyword">print</span> raw_data[<span class="string">'Country'</span>]</span><br></pre></td></tr></table></figure>
 
 <pre><code>[&apos;536365&apos; &apos;536365&apos; &apos;536365&apos; ... &apos;581587&apos; &apos;581587&apos; &apos;581587&apos;]
 0         United Kingdom
@@ -252,7 +249,7 @@ Name: Country, Length: 541909, dtype: object</code></pre><figure class="highligh
  &apos;Sweden&apos; &apos;Austria&apos; &apos;Israel&apos; &apos;Finland&apos; &apos;Bahrain&apos; &apos;Greece&apos; &apos;Hong Kong&apos;
  &apos;Singapore&apos; &apos;Lebanon&apos; &apos;United Arab Emirates&apos; &apos;Saudi Arabia&apos;
  &apos;Czech Republic&apos; &apos;Canada&apos; &apos;Unspecified&apos; &apos;Brazil&apos; &apos;USA&apos;
- &apos;European Community&apos; &apos;Malta&apos; &apos;RSA&apos;]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># United Kindom represented as 1</span></span><br><span class="line"><span class="comment"># France represented as 2</span></span><br><span class="line"><span class="comment">#raw_data = np.asarray(raw_data)</span></span><br><span class="line"><span class="comment"># finish the rest of the data preprocessing step</span></span><br><span class="line">country_list = raw_data[<span class="string">'Country'</span>].unique()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(country_list)):</span><br><span class="line">    raw_data.loc[raw_data[<span class="string">'Country'</span>] == country_list[i], [<span class="string">'Country'</span>]]  = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">print</span> raw_data[<span class="string">'Country'</span>]</span><br></pre></td></tr></table></figure>
+ &apos;European Community&apos; &apos;Malta&apos; &apos;RSA&apos;]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">country_list = raw_data[<span class="string">'Country'</span>].unique()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(country_list)):</span><br><span class="line">    raw_data.loc[raw_data[<span class="string">'Country'</span>] == country_list[i], [<span class="string">'Country'</span>]]  = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">print</span> raw_data[<span class="string">'Country'</span>]</span><br></pre></td></tr></table></figure>
 
 <pre><code>0         1
 1         1
@@ -321,7 +318,7 @@ Name: Country, Length: 541909, dtype: int64</code></pre><figure class="highlight
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stock_code_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(raw_data[<span class="string">'StockCode'</span>])):</span><br><span class="line">    stock_code_list.append(len(str(raw_data[<span class="string">'StockCode'</span>][i])))</span><br></pre></td></tr></table></figure>
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> raw_data[<span class="string">'InvoiceDate'</span>]</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">time1 = <span class="string">'2010/12/1 8:26'</span></span><br><span class="line">time2 = <span class="string">'2010/12/1 8:34'</span></span><br><span class="line"><span class="keyword">print</span> datetime.strptime( time1,  <span class="string">"%Y/%m/%d %H:%M"</span>) &gt; datetime.strptime( time2,  <span class="string">"%Y/%m/%d %H:%M"</span>)</span><br><span class="line"><span class="comment"># 1. same product 2. same time = 1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> raw_data[<span class="string">'InvoiceDate'</span>]</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">time1 = <span class="string">'2010/12/1 8:26'</span></span><br><span class="line">time2 = <span class="string">'2010/12/1 8:34'</span></span><br><span class="line"><span class="keyword">print</span> datetime.strptime( time1,  <span class="string">"%Y/%m/%d %H:%M"</span>) &gt; datetime.strptime( time2,  <span class="string">"%Y/%m/%d %H:%M"</span>)</span><br></pre></td></tr></table></figure>
 
 <pre><code>0          2010/12/1 8:26
 1          2010/12/1 8:26
@@ -385,49 +382,7 @@ Name: Country, Length: 541909, dtype: int64</code></pre><figure class="highlight
 541907    2011/12/9 12:50
 541908    2011/12/9 12:50
 Name: InvoiceDate, Length: 541909, dtype: object
-False</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#dummy_invoice = pd.get_dummies(raw_data['InvoiceDate'])</span></span><br><span class="line"><span class="comment"># create dummy variables</span></span><br></pre></td></tr></table></figure>
-
-
-<pre><code>---------------------------------------------------------------------------
-
-MemoryError                               Traceback (most recent call last)
-
-&lt;ipython-input-22-6cc73821d6c3&gt; in &lt;module&gt;()
-----&gt; 1 dummy_invoice = pd.get_dummies(raw_data[&apos;InvoiceDate&apos;])
-      2 # create dummy variables
-
-
-c:\python27\lib\site-packages\pandas\core\reshape\reshape.pyc in get_dummies(data, prefix, prefix_sep, dummy_na, columns, sparse, drop_first, dtype)
-    864                                  sparse=sparse,
-    865                                  drop_first=drop_first,
---&gt; 866                                  dtype=dtype)
-    867     return result
-    868 
-
-
-c:\python27\lib\site-packages\pandas\core\reshape\reshape.pyc in _get_dummies_1d(data, prefix, prefix_sep, dummy_na, sparse, drop_first, dtype)
-    961 
-    962     else:
---&gt; 963         dummy_mat = np.eye(number_of_cols, dtype=dtype).take(codes, axis=0)
-    964 
-    965         if not dummy_na:
-
-
-MemoryError: </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#print dummy_invoice.head()</span></span><br></pre></td></tr></table></figure>
-
-
-<pre><code>---------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-23-e163efc38835&gt; in &lt;module&gt;()
-----&gt; 1 print dummy_invoice.head()
-
-
-NameError: name &apos;dummy_invoice&apos; is not defined</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InvoiceDate_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(raw_data[<span class="string">'InvoiceDate'</span>])):</span><br><span class="line">    InvoiceDate_list.append(datetime.strptime( raw_data[<span class="string">'InvoiceDate'</span>][i],  <span class="string">"%Y/%m/%d %H:%M"</span>))</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># preprocessing </span></span><br><span class="line"><span class="comment"># features are too large -&gt; overfitting</span></span><br><span class="line"><span class="comment"># features are too small -&gt; underfiitting </span></span><br><span class="line"><span class="comment"># The biggest challening in data analysis is the problem of overfitting or underfitting for constructing a model. </span></span><br><span class="line"><span class="comment"># The problem of overfitting is that the model has too many parameters but has too less data observation points -&gt; model has great performance on</span></span><br><span class="line"><span class="comment">#training data but poor performance on testing data</span></span><br><span class="line"><span class="comment">#overfitting: model is not gerneral enough</span></span><br><span class="line"><span class="comment">#model? -?</span></span><br><span class="line"><span class="comment">#linear model vs. non-linear model</span></span><br><span class="line"><span class="comment">#linear model (parameters) -&gt; training a model -&gt; alculating all the parameters -&gt; gradients descent (stochastic gradient descent)-&gt; detrivative</span></span><br><span class="line"><span class="comment"># gradient descent: local optimum </span></span><br><span class="line"><span class="comment"># stochastic gradient descent: global optimum</span></span><br><span class="line"><span class="comment">#print  InvoiceDate_list</span></span><br></pre></td></tr></table></figure>
+False</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InvoiceDate_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(raw_data[<span class="string">'InvoiceDate'</span>])):</span><br><span class="line">    InvoiceDate_list.append(datetime.strptime( raw_data[<span class="string">'InvoiceDate'</span>][i],  <span class="string">"%Y/%m/%d %H:%M"</span>))</span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_seconds</span><span class="params">(date)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> *date.day + <span class="number">60</span> * <span class="number">60</span> *date.hour + <span class="number">60</span> * date.minute + date.second</span><br></pre></td></tr></table></figure>
@@ -436,13 +391,12 @@ NameError: name &apos;dummy_invoice&apos; is not defined</code></pre><figure cla
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(InvoiceDate_list)):</span><br><span class="line">    InvoiceDate_list[i] =  to_seconds(InvoiceDate_list[i])</span><br></pre></td></tr></table></figure>
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#print InvoiceDate_list</span></span><br></pre></td></tr></table></figure>
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># convert all invoice number to a interger</span></span><br><span class="line">InvoiceNo_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(raw_data[<span class="string">'InvoiceNo'</span>])):</span><br><span class="line">    <span class="keyword">if</span> len(raw_data[<span class="string">'InvoiceNo'</span>][i]) &gt; <span class="number">5</span>:</span><br><span class="line">        <span class="comment">#print raw_data['InvoiceNo'][i][1:5]</span></span><br><span class="line">        InvoiceNo_list.append(int(raw_data[<span class="string">'InvoiceNo'</span>][i][<span class="number">1</span>:<span class="number">5</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">InvoiceNo_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(raw_data[<span class="string">'InvoiceNo'</span>])):</span><br><span class="line">    <span class="keyword">if</span> len(raw_data[<span class="string">'InvoiceNo'</span>][i]) &gt; <span class="number">5</span>:</span><br><span class="line">        <span class="comment">#print raw_data['InvoiceNo'][i][1:5]</span></span><br><span class="line">        InvoiceNo_list.append(int(raw_data[<span class="string">'InvoiceNo'</span>][i][<span class="number">1</span>:<span class="number">5</span>]))</span><br></pre></td></tr></table></figure>
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">all_data = []  <span class="comment"># this list is to hold all data</span></span><br><span class="line">names=[<span class="string">'InvoiceNo'</span>, <span class="string">'StockCode'</span>,<span class="string">'Quantity'</span>, <span class="string">'InvoiceDate'</span>,</span><br><span class="line">                                                <span class="string">'UnitPrice'</span>, <span class="string">'CustomerID'</span>, <span class="string">'Country'</span>]</span><br><span class="line">all_data.append(InvoiceNo_list)</span><br><span class="line">all_data.append(stock_code_list)</span><br><span class="line"><span class="comment">#all_data.append(raw_data['Quantity'].tolist())</span></span><br><span class="line">all_data.append(InvoiceDate_list)</span><br><span class="line">all_data.append(raw_data[<span class="string">'UnitPrice'</span>].tolist())</span><br><span class="line">all_data.append(raw_data[<span class="string">'CustomerID'</span>].tolist())</span><br><span class="line">all_data.append(raw_data[<span class="string">'Country'</span>].tolist())</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(all_data)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(all_data[i])):</span><br><span class="line">        all_data[i][j] = float(all_data[i][j])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">all_data = []  </span><br><span class="line">names=[<span class="string">'InvoiceNo'</span>, <span class="string">'StockCode'</span>,<span class="string">'Quantity'</span>, <span class="string">'InvoiceDate'</span>,</span><br><span class="line">                                                <span class="string">'UnitPrice'</span>, <span class="string">'CustomerID'</span>, <span class="string">'Country'</span>]</span><br><span class="line">all_data.append(InvoiceNo_list)</span><br><span class="line">all_data.append(stock_code_list)</span><br><span class="line"></span><br><span class="line">all_data.append(InvoiceDate_list)</span><br><span class="line">all_data.append(raw_data[<span class="string">'UnitPrice'</span>].tolist())</span><br><span class="line">all_data.append(raw_data[<span class="string">'CustomerID'</span>].tolist())</span><br><span class="line">all_data.append(raw_data[<span class="string">'Country'</span>].tolist())</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(all_data)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(all_data[i])):</span><br><span class="line">        all_data[i][j] = float(all_data[i][j])</span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">target_data = []</span><br><span class="line">target_data.append(raw_data[<span class="string">'Quantity'</span>].tolist())</span><br><span class="line"><span class="keyword">print</span> len(target_data)</span><br></pre></td></tr></table></figure>
@@ -451,13 +405,10 @@ NameError: name &apos;dummy_invoice&apos; is not defined</code></pre><figure cla
 
 <pre><code>(541909L, 6L)
 (541909L, 1L)
-(1L, 541909L)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">X_train = pd.DataFrame(X_train)</span><br><span class="line">Y_train = pd.DataFrame(Y_train)</span><br><span class="line"><span class="comment">#print X_train[0][0]</span></span><br><span class="line"><span class="comment">#print X_train[2].isna()</span></span><br><span class="line"><span class="keyword">print</span> X_train.isnull().values.any()</span><br><span class="line"><span class="comment">#print len(X_train[0].fillna(X_train[0].mean()))</span></span><br><span class="line"><span class="comment">#NaN = not a number</span></span><br><span class="line">X_train = X_train.fillna(X_train.mean())</span><br><span class="line"><span class="keyword">print</span> Y_train.isnull().values.any()</span><br></pre></td></tr></table></figure>
+(1L, 541909L)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">X_train = pd.DataFrame(X_train)</span><br><span class="line">Y_train = pd.DataFrame(Y_train)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> X_train.isnull().values.any()</span><br><span class="line"></span><br><span class="line">X_train = X_train.fillna(X_train.mean())</span><br><span class="line"><span class="keyword">print</span> Y_train.isnull().values.any()</span><br></pre></td></tr></table></figure>
 
 <pre><code>False
-False</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#from sklearn import svm</span></span><br><span class="line"><span class="comment">#svm_model = svm.SVC(probability=True, decision_function_shape = 'ovo')</span></span><br><span class="line"><span class="comment">#svm_model.fit(X_train,Y_train) # training</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ridge regression </span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="comment"># initialize ridge regression model </span></span><br><span class="line">ridge_model = Ridge(alpha = <span class="number">0.5</span>)</span><br><span class="line">ridge_model.fit(X_train, Y_train) <span class="comment"># training the model</span></span><br></pre></td></tr></table></figure>
+False</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ridge regression </span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="comment"># initialize ridge regression model </span></span><br><span class="line">ridge_model = Ridge(alpha = <span class="number">0.5</span>)</span><br><span class="line">ridge_model.fit(X_train, Y_train) <span class="comment"># training the model</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -493,19 +444,11 @@ False</code></pre><figure class="highlight python"><table><tr><td class="gutter"
  11.69218039]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(Lasso_predict)):</span><br><span class="line">    Lasso_predict[i]=int(round(Lasso_predict[i]))</span><br></pre></td></tr></table></figure>
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#from sklearn.linear_model import LogisticRegression</span></span><br><span class="line"><span class="comment">#logistic_model =sion(random_state = 0, solver = 'lbfgs')</span></span><br><span class="line"><span class="comment">#logistic_model.fit(X_train, LogisticRegres Y_train)</span></span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> BayesianRidge</span><br><span class="line">bayesian_model = BayesianRidge(fit_intercept = <span class="literal">True</span>, normalize = <span class="literal">False</span>)</span><br><span class="line">bayesian_model.fit(X_train,Y_train)</span><br></pre></td></tr></table></figure>
 
-<pre><code>c:\python27\lib\site-packages\sklearn\utils\validation.py:761: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
-  y = column_or_1d(y, warn=True)
-
-
-
-
-
-BayesianRidge(alpha_1=1e-06, alpha_2=1e-06, compute_score=False, copy_X=True,
+<pre><code>BayesianRidge(alpha_1=1e-06, alpha_2=1e-06, compute_score=False, copy_X=True,
        fit_intercept=True, lambda_1=1e-06, lambda_2=1e-06, n_iter=300,
        normalize=False, tol=0.001, verbose=False)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bayesian_predict = bayesian_model.predict(X_test)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(bayesian_predict)):</span><br><span class="line">    bayesian_predict[i] = int(round(bayesian_predict[i]))</span><br></pre></td></tr></table></figure>
 
@@ -518,75 +461,24 @@ BayesianRidge(alpha_1=1e-06, alpha_2=1e-06, compute_score=False, copy_X=True,
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line">plt.hold()</span><br><span class="line">plt.plot(ridge_predict[:, <span class="number">0</span>], color = <span class="string">'r'</span>)</span><br><span class="line">plt.plot(Y__test[:,<span class="number">0</span>], color = <span class="string">'b'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
-<pre><code>c:\python27\lib\site-packages\ipykernel_launcher.py:2: MatplotlibDeprecationWarning: pyplot.hold is deprecated.
-    Future behavior will be consistent with the long-time default:
-    plot commands add elements without first clearing the
-    Axes and/or Figure.
-
-
-
-
----------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-59-c7f1a5874e70&gt; in &lt;module&gt;()
-      2 plt.hold()
-      3 plt.plot(ridge_predict[:, 0], color = &apos;r&apos;)
-----&gt; 4 plt.plot(ridge__test[:,0], color = &apos;b&apos;)
-      5 plt.show()
-
-
-NameError: name &apos;ridge__test&apos; is not defined</code></pre><p><img src="/2019/10/28/Project-Summary/2.png" alt="png"></p>
+<p><img src="/2019/10/28/Project-Summary/2.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> <span class="string">'mean absolute error for ridge: '</span>, mean_absolute_error(Y_test,ridge_predict)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'mean absolute error for lasso: '</span>, mean_absolute_error(Y_test,Lasso_predict)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'mean absolute error for bayesian: '</span>, mean_absolute_error(Y_test,bayesian_predict)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'mean absolute error for NN: '</span>, mean_absolute_error(Y_test,nn_predict)</span><br></pre></td></tr></table></figure>
 
-<pre><code> mean absolute error for ridge:  11.989095789297098
-mean absolute error for lasso:  11.99402225577364
-mean absolute error for bayesian:  11.995263658222893
-mean absolute error for NN: 
 
-
----------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-80-c7d2073a448b&gt; in &lt;module&gt;()
-      2 print &apos;mean absolute error for lasso: &apos;, mean_absolute_error(Y_test,Lasso_predict)
-      3 print &apos;mean absolute error for bayesian: &apos;, mean_absolute_error(Y_test,bayesian_predict)
-----&gt; 4 print &apos;mean absolute error for NN: &apos;, mean_absolute_error(Y_test,nn_predict)
-
-
-NameError: name &apos;nn_predict&apos; is not defined</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br></pre></td></tr></table></figure>
 
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> <span class="string">'mean square error for ridge: '</span>, mean_square_error(Y_test,ridge_predict)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'mean absolute error for lasso: '</span>, mean_absolute_error(Y_test,Lasso_predict)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'mean absolute error for bayesian: '</span>, mean_absolute_error(Y_test,bayessian_predict)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'mean absolute error for NN: '</span>, mean_absolute_error(Y_test,nn_predict)</span><br></pre></td></tr></table></figure>
 
-<pre><code> mean square error for ridge: 
-
-
----------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-81-79ef903673a6&gt; in &lt;module&gt;()
-----&gt; 1 print &apos;mean square error for ridge: &apos;, mean_square_error(Y_test,ridge_predict)
-      2 print &apos;mean absolute error for lasso: &apos;, mean_absolute_error(Y_test,Lasso_predict)
-      3 print &apos;mean absolute error for bayesian: &apos;, mean_absolute_error(Y_test,bayessian_predict)
-      4 print &apos;mean absolute error for NN: &apos;, mean_absolute_error(Y_test,nn_predict)
-
-
-NameError: name &apos;mean_square_error&apos; is not defined</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(ridge_predict[:,<span class="number">0</span>])</span><br><span class="line">plt.plot(Lasso_predict, c = <span class="string">'r'</span>)</span><br><span class="line">plt.plot</span><br></pre></td></tr></table></figure>
 
 
 
 
-<pre><code>[&lt;matplotlib.lines.Line2D at 0x16a888d0&gt;]</code></pre><p><img src="/2019/10/28/Project-Summary/3.png" alt="png"></p>
+<p><img src="/2019/10/28/Project-Summary/3.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fig.ax1 = plt.subplots()</span><br><span class="line">ax1.plot(ridge_predict)</span><br><span class="line">ax1.set_title(<span class="string">"rifge regression prediction result"</span>)</span><br><span class="line">fig.ax2 = plt.subplots()</span><br><span class="line">ax2.plot(Lasso_predict)</span><br><span class="line">ax2.set_title(<span class="string">"rifge regression prediction result"</span>)</span><br><span class="line">fig.ax3 = plt.subplots()</span><br><span class="line">ax3.plot(Y_test[:,<span class="number">0</span>])</span><br><span class="line">ax3.set_title(<span class="string">"rifge regression prediction result"</span>)</span><br></pre></td></tr></table></figure>
 
 
